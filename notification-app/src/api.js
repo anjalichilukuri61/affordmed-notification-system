@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://4.224.186.213/evaluation-service';
+const BASE_URL = 'http://localhost:5000';
 
 // Priority weights for sorting
 export const PRIORITY_WEIGHT = {
@@ -10,10 +10,8 @@ export const PRIORITY_WEIGHT = {
 };
 
 // Fetch all notifications (with optional query params)
-export const fetchNotifications = async (params = {}) => {
-  const query = new URLSearchParams(params).toString();
-  const url = `${BASE_URL}/notifications${query ? '?' + query : ''}`;
-  const response = await axios.get(url);
+export const fetchNotifications = async () => {
+  const response = await axios.get(`${BASE_URL}/notifications`);
   return response.data.notifications || [];
 };
 
